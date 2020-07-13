@@ -1,8 +1,8 @@
 const routes = require('express').Router();
 
-routes.get('/', (req, res) => {
+routes.get('/', async(req, res) => {
   return res.json({
-    message: 'Working!'
+    message: "Working!"
   });
 });
 

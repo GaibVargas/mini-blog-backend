@@ -1,12 +1,12 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Post extends Model {
     static associate(models) {
-      this.belongsTo(models.User);
-      this.belongsToMany(models.Tag, { foreignKey: 'idPost', through: 'post-tag', as: 'tags' });
+      this.belongsTo(models.User, { foreignKey: 'id_author' });
+      this.belongsToMany(models.Tag, { foreignKey: 'id_post', through: 'post-tag', as: 'tags' });
     }
   };
 

@@ -1,5 +1,3 @@
-const { show, index } = require("./UserController");
-
 const { Tag } = require('../database/models');
 
 module.exports = {

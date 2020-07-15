@@ -22,7 +22,9 @@ module.exports = {
     const post = await Post.create({
       title, content, id_author
     }, {
-      include: [ User ]
+      include: [{
+        association: 'author'
+      }]
     });
 
     for(let i = 0; i < allTags.length; i++) {
@@ -35,10 +37,14 @@ module.exports = {
   async show(req, res) {
     const posts = await Post.findAll({
       include: [{
+        association: 'author',
+        attributes: ['name']
+      }, {
         association: 'tags',
         attributes: ['description'],
         through: { attributes: [] }
-      }]
+      }
+    ]
     });
 
     return res.json(posts);
@@ -49,6 +55,9 @@ module.exports = {
 
     const post = await Post.findByPk(id, {
       include: [{
+        association: 'author',
+        attributes: ['name']
+      }, {
         association: 'tags',
         attributes: ['description'],
         through: { attributes: [] }
@@ -74,5 +83,22 @@ module.exports = {
     });
 
     return res.json({ message: "Post deleted!" });
+  },
+
+  async update(req, res) {
+    const { post_id, user_id, title, content } = req.body;
+
+    const [post] = await Post.update({
+      title, content
+    }, {
+      where: {
+        id: post_id,
+        id_author: user_id
+      }
+    });
+
+    if(post === 0) return res.json({ message: "It cannot be updated" });
+
+    return res.json({ message: "Post updated!" });
   },
 }

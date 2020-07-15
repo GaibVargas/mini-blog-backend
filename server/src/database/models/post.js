@@ -5,7 +5,7 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Post extends Model {
     static associate(models) {
-      this.belongsTo(models.User, { foreignKey: 'id_author' });
+      this.belongsTo(models.User, { foreignKey: 'id_author', as: 'author' });
       this.belongsToMany(models.Tag, { foreignKey: 'id_post', through: 'post-tag', as: 'tags' });
     }
   };

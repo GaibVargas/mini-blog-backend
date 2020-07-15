@@ -1,2 +1,16 @@
 # mini-blog-backend
 Core functions for a mini-blog
+
+# Insomnia
+Get Insomnia links to test and play with my project.
+
+# Functions
+Add, delete, and update users, posts and tags for posts
+
+# Technologies
+- [Node.js](https://nodejs.org/en/)
+- [Sequelize](https://sequelize.org/master/)
+- [Sequelize cli](https://github.com/sequelize/cli)
+
+# Goals
+Training skills on Node.js, and learning more about sequelize and its associations
